@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Button from './components/UI/Button/Button';
 import DemoOutput from './components/UI/Button/Demo/DemoOutput';
 import './App.css';
@@ -16,9 +16,21 @@ function App() {
 	 */
 	console.log('APP RUNNING');
 
-	const toggleParaHandler = () => {
+	/**
+	 * The useCallback() hook allows us to store functions across different
+	 * components. This means it will not be re-created every time this component
+	 * is re-run after a state, context or props change. React will store the
+	 * function object once and re-use that function.
+	 *
+	 * This is useful when you want to use React.memo() on child components
+	 * with a function as a prop attribute. Because when React.memo() compares
+	 * prop.function with prop.prev.function, it will find the same functio object.
+	 *
+	 * See Button.js for details.
+	 */
+	const toggleParaHandler = useCallback(() => {
 		setShowPara((prevParaState) => !prevParaState);
-	};
+	}, []);
 
 	return (
 		<div className="app">

@@ -21,7 +21,7 @@ const Button = (props) => {
  * sense to use React.memo() to prevent this component from re-running
  * when the parent state changes.
  *
- * But this doesn't work because of the onClick attribute contains a FUNCTION.
+ * BUT THIS DOESN'T WORK because of the onClick attribute contains a FUNCTION.
  *
  * In Javascript, FUNCTIONS ARE OBJECTS. OBJECTS and ARRAYS are REFERENCE TYPE
  * data in Javascript.
@@ -44,5 +44,8 @@ const Button = (props) => {
  * Therefore, this props change causes the button component to re-run even though
  * React.memo() has been added and no "real" changes have been made to the buttons
  * props.
+ *
+ * To work around this behaviour you can use the useCallback() hook. See App.js for
+ * details.
  */
 export default React.memo(Button);
